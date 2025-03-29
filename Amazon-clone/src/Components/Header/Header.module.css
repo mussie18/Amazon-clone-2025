@@ -1,5 +1,5 @@
 .header_container {
-  background-color: #1a1a1a;
+  background-color: #131921;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -59,6 +59,7 @@
 }
 .search svg:hover {
   background-color: #d49644;
+  cursor: pointer;
 }
 .search:focus-within {
   border: 2px solid rgb(235, 161, 173);
@@ -110,7 +111,7 @@
   border-radius: 3px;
 }
 .lower_container {
-  background-color: #232f3e;
+  background-color: #232F3E;
   color: white;
 }
 .lower_container ul {

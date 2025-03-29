@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
 import AmazonLogo from "../../assets/images/amazonLogo.png";
-// import USA_Flag from "../../assets/images/Flag_of_the_United_States.png";
 import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
@@ -21,7 +20,7 @@ const Header = () => {
                 <SlLocationPin />
               </span>
               <div>
-                <p>Delivered to</p>
+                <p>Deliver to</p>
                 <span>Ethiopia</span>
               </div>
             </div>
@@ -43,7 +42,6 @@ const Header = () => {
                 <option value="">EN</option>
               </select>
             </a>
-
             <a href="">
               <div>
                 <p>Sign In </p>
