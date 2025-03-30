@@ -17,12 +17,6 @@ const categoryData = [
     imgLink:
       "https://i5.walmartimages.com/seo/Wedure-Wedding-Bridal-Jewelery-for-Women-Austrian-Crystal-Teardrop-Cluster-Statement-Necklace-Dangle-Earrings-Link-Bracelet-Set-Champagne-Gold-Tone_26a87916-646b-4466-ae41-81ead1c8a037.14300b36bfd03ae6bf1f1379930f93d8.jpeg",
   },
-  {
-    title: "Women's clothing",
-    name: "women's clothing",
-    imgLink:
-      "https://cdn-images.farfetch-contents.com/22/37/10/89/22371089_52406413_1000.jpg",
-  },
 ];
 
 export default categoryData;
