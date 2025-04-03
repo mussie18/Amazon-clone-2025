@@ -31,7 +31,7 @@ const Header = () => {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="Search Product" />
-            <BsSearch size={45} />
+            <BsSearch size={40} />
           </div>
           <div className={styles.order_container}>
             <Link to="" className={styles.language}>
