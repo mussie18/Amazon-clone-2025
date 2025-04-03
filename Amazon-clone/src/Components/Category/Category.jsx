@@ -5,7 +5,7 @@ import categoryData from "./categoryData";
 const Category = () => {
   return (
     <div className={styles.category_container}>
-      {categoryData.map((data, i) => (
+      {categoryData?.map((data, i) => (
         <CategoryCard key={i} data={data} />
       ))}
     </div>

@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
         <h3>{title}</h3>
         <div className={styles.rating}>
           {/* rating */}
-          <Rating value={rating?.rate ?? 0} precision={0.1} />
+          <Rating value={rating?.rate} precision={0.1} />
           {/* rating counter */}
           <small>{rating?.count}</small>
         </div>
