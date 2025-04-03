@@ -10,7 +10,7 @@ const categoryData = [
     name: "men's clothing",
     imgLink:
       "https://cdn-images.farfetch-contents.com/20/25/12/50/20251250_51363348_1000.jpg",
-  },
+  },-
   {
     title: "Jewelery",
     name: "jewelery",
