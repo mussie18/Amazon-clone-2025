@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import AmazonLogo from "../../assets/images/amazonLogo.png";
@@ -6,11 +6,15 @@ import { SlLocationPin } from "react-icons/sl";
 import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
+import { DataContext } from "../DataProvider/DataProvider";
 
 const Header = () => {
+  const [state, dispatch] = useContext(DataContext);
+  const cart = state.cart;
+
   return (
     <>
-      <section>
+      <section className={styles.fixed}>
         <div className={styles.header_container}>
           <div className={styles.logo_container}>
             <Link to="/">
@@ -55,7 +59,7 @@ const Header = () => {
             </Link>
             <Link to="/cart" className={styles.cart}>
               <BiCart size={35} />
-              <span>0</span>
+              <span>{cart.length}</span>
             </Link>
           </div>
         </div>
