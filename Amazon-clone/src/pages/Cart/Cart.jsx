@@ -8,7 +8,10 @@ import CurrencyFormater from "../../Components/CurrencyFormater/CurrencyFormater
 
 const Cart = () => {
   const [{ cart, user }, dispatch] = useContext(DataContext);
-  const total = cart.reduce((amount, item) => amount + item.price, 0);
+
+  const total = cart.reduce((amount, item) => {
+    return item.price * item.amount + amount;
+  }, 0);
 
   return (
     <LayOut>
