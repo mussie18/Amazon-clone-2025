@@ -5,6 +5,9 @@ import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import { Link } from "react-router-dom";
 import CurrencyFormater from "../../Components/CurrencyFormater/CurrencyFormater";
+import { Type } from "../../Utility/actionTypes";
+import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 
 const Cart = () => {
   const [{ cart, user }, dispatch] = useContext(DataContext);
@@ -12,6 +15,19 @@ const Cart = () => {
   const total = cart.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
+
+  const increment = (item) => {
+    dispatch({
+      type: Type.ADD_TO_CART,
+      item,
+    });
+  };
+  const decrement = (id) => {
+    dispatch({
+      type: Type.REMOVE_FROM_CART,
+      id,
+    });
+  };
 
   return (
     <LayOut>
@@ -25,13 +41,30 @@ const Cart = () => {
           ) : (
             cart?.map((item, i) => {
               return (
-                <ProductCard
-                  key={i}
-                  product={item}
-                  renderDesc={true}
-                  flex={true}
-                  renderAddToCart={false}
-                />
+                <section className={styles.cart_product}>
+                  <ProductCard
+                    key={i}
+                    product={item}
+                    renderDesc={true}
+                    flex={true}
+                    renderAddToCart={false}
+                  />
+                  <div className={styles.btn_container}>
+                    <button
+                      className={styles.btn}
+                      onClick={() => increment(item)}
+                    >
+                      <FaArrowUp size={30} />
+                    </button>
+                    <span>{item.amount}</span>
+                    <button
+                      className={styles.btn}
+                      onClick={() => decrement(item.id)}
+                    >
+                      <FaArrowDown size={30} />
+                    </button>
+                  </div>
+                </section>
               );
             })
           )}
