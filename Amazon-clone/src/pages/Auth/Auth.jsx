@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styles from "./Auth.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../Utility/firebase";
 import {
   signInWithEmailAndPassword,
@@ -8,41 +8,58 @@ import {
 } from "firebase/auth";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import { Type } from "../../Utility/actionTypes";
+import { ClipLoader } from "react-spinners";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState({
+    signIn: false,
+    signUp: false,
+  });
   const [{ user }, dispatch] = useContext(DataContext);
-  console.log(user);
+  const navigate = useNavigate();
 
   const authHandler = async (e) => {
     e.preventDefault();
     if (e.target.name == "signIn") {
+      setLoading({ ...loading, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
         .then((userInofrmation) => {
           dispatch({
             type: Type.SET_USER,
             user: userInofrmation.user,
           });
+          setLoading({ ...loading, signIn: false });
+          navigate("/");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setError(err.message);
+          setLoading({ ...loading, signIn: false });
+        });
     } else {
+      setLoading({ ...loading, signIn: true });
       createUserWithEmailAndPassword(auth, email, password)
         .then((userInofrmation) => {
           dispatch({
             type: Type.SET_USER,
             user: userInofrmation.user,
           });
+          setLoading({ ...loading, signIn: false });
+          navigate("/");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setError(err.message);
+          setLoading({ ...loading, signIn: false });
+        });
     }
   };
 
   return (
     <section className={styles.login}>
       {/* logo */}
-      <Link>
+      <Link to={"/"}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
           alt=""
@@ -76,7 +93,11 @@ const Auth = () => {
             onClick={authHandler}
             className={styles.SignIn_btn}
           >
-            Sign In
+            {loading.signIn ? (
+              <ClipLoader color="#fff" size={15} />
+            ) : (
+              " Sign In"
+            )}
           </button>
         </form>
         {/* agreement */}
@@ -92,8 +113,15 @@ const Auth = () => {
           onClick={authHandler}
           className={styles.register_btn}
         >
-          Create your Amazon Account
+          {loading.signUp ? (
+            <ClipLoader color="#000" size={15} />
+          ) : (
+            " Create your Amazon Account"
+          )}
         </button>
+        {error && (
+          <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
+        )}
       </div>
     </section>
   );

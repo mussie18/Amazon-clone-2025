@@ -7,10 +7,11 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
+import { auth } from "../../Utility/firebase";
 
 const Header = () => {
-  const [state, dispatch] = useContext(DataContext);
-  const cart = state.cart;
+  const [{ cart, user }, dispatch] = useContext(DataContext);
+  // const cart = state.cart;
   const totalItem = cart?.reduce((amount, item) => item.amount + amount, 0);
 
   return (
@@ -36,7 +37,7 @@ const Header = () => {
               <option value="">All</option>
             </select>
             <input type="text" placeholder="Search Product" />
-            <BsSearch size={40} />
+            <BsSearch size={38} />
           </div>
           <div className={styles.order_container}>
             <Link to="" className={styles.language}>
@@ -48,10 +49,19 @@ const Header = () => {
                 <option value="">EN</option>
               </select>
             </Link>
-            <Link to="/auth">
+            <Link to={!user && "/auth"}>
               <div>
-                <p>Sign In </p>
-                <span>Account & Lists</span>
+                {user ? (
+                  <>
+                    <p>Hello, {user?.email?.split("@")[0]}</p>
+                    <span onClick={() => auth.signOut()}>Sign Out</span>
+                  </>
+                ) : (
+                  <>
+                    <p>Hello, Sign In </p>
+                    <span>Account & Lists</span>
+                  </>
+                )}
               </div>
             </Link>
             <Link to="/orders">
