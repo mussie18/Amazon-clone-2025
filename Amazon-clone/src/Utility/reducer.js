@@ -2,6 +2,7 @@ import { Type } from "./actionTypes";
 
 export const initialState = {
   cart: [],
+  user: null,
 };
 
 export const reducer = (state, action) => {
@@ -40,11 +41,17 @@ export const reducer = (state, action) => {
         } else {
           newCart.splice(index, 1);
         }
+      }
+      return {
+        ...state,
+        cart: newCart,
+      };
+
+      case Type.SET_USER:
         return {
           ...state,
-          cart: newCart,
+          user: action.user,
         };
-      }
 
     default:
       return state;

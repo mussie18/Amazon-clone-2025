@@ -1,6 +1,7 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
+// Example firebase.js using v9 modular SDK
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAgXVISjX_pk_OkGMHNZ7orizE0po9I7VM",
@@ -12,8 +13,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// Export auth and firestore
-export const auth = firebase.auth();
-export const db = firebase.firestore();
+// Export auth and firestore instances
+export const auth = getAuth(app);
+export const db = getFirestore(app);
