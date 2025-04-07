@@ -1,4 +1,4 @@
-import styles from "./category.module.css";
+import styles from "./Category.module.css";
 import CategoryCard from "./CategoryCard";
 import categoryData from "./categoryData";
 

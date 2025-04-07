@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from "react";
-import "./App.css";
 import Routing from "./Router";
 import { DataContext } from "./Components/DataProvider/DataProvider";
 import { Type } from "./Utility/actionTypes";
